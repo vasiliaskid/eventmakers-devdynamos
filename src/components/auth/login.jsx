@@ -22,7 +22,7 @@ export const Login = () => {
     if (res.status === 200) {
       const jsonRes = await res.json();
       setMessage(jsonRes.message);
-      router.push("/dashboard");
+      router.push("/events");
     }
     if (res.status === 401 || res.status === 404) {
       const jsonRes = await res.json();
