@@ -4,7 +4,7 @@ import Link from "next/link";
 async function fetchEvents() {
   const res = await fetch("https://eventmakers.devscale.id/events/");
   const data = await res.json();
-  return data.data.map((item) => item.events); // Ekstrak data event dari respons API
+  return data.data.map((item) => item.events);
 }
 
 const EventList = ({ events }) => {
