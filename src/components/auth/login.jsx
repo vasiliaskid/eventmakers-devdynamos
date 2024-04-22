@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 export const Login = () => {
   const router = useRouter();
@@ -23,7 +24,13 @@ export const Login = () => {
       const jsonRes = await res.json();
       setMessage(jsonRes.message);
       router.push("/events");
+
+      const { payload, token } = jsonRes;
+
+      localStorage.setItem("userdata", JSON.stringify(payload));
+      Cookies.set("token", JSON.stringify(token));
     }
+
     if (res.status === 401 || res.status === 404) {
       const jsonRes = await res.json();
       setMessage(jsonRes.message);
@@ -53,7 +60,7 @@ export const Login = () => {
         <button className="btn btn-primary">Log In</button>
       </form>
       <p className="text-xs mt-400 text-center">
-        Don't have an account?
+        Do not have an account?
         <a className="btn btn-active btn-link" href="/register">
           Register Here
         </a>
