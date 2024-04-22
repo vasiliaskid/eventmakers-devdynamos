@@ -28,7 +28,7 @@ export const Register = () => {
       router.push("/dashboard");
     }
 
-    if ((res.status === 405) | (res.status === 500)) {
+    if (res.status === 405 || res.status === 500) {
       const jsonRes = await res.json();
       setMessage(jsonRes.message);
     }
