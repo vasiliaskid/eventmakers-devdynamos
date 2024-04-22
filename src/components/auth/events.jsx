@@ -7,27 +7,9 @@ async function fetchEvents() {
   return data.data.map((item) => item.events);
 }
 
-const Navbar = () => {
-  return (
-    <nav className="bg-neutral-content p-4 flex justify-between items-center">
-      <div className="flex items-center">
-        <button class="btn btn-secondary">Devdynamos Event</button>
-      </div>
-      <div>
-        <Link href="/login">
-          <button class="btn btn-outline btn-info mr-4">Login</button>
-        </Link>
-        <Link href="/register">
-          <button class="btn btn-outline btn-success mr-4">Register</button>
-        </Link>
-      </div>
-    </nav>
-  );
-};
-
 const EventList = ({ events }) => {
   return (
-    <div className="mx-auto max-w-7xl">
+    <div className="mx-auto max-w-7xl mb-8">
       <h1 className="text-3xl font-semibold mb-4 text-center mt-8">
         Katalog Event
       </h1>
@@ -38,14 +20,18 @@ const EventList = ({ events }) => {
               <img
                 src={event.image}
                 alt={event.title}
-                className="object-cover rounded-t-lg w-full h-40"
+                className="object-cover rounded-t-lg w-full h-80"
               />
             </figure>
             <div className="card-body card-body bg-gradient-to-b from-yellow-50 to-yellow-100">
               <h2 className="card-title text-xl font-semibold mb-2">
                 {event.title}
               </h2>
-              <p className="text-gray-600 mb-2">{event.description}</p>
+              <p className="text-gray-600 mb-2">
+                {event.description.length > 50
+                  ? event.description.slice(0, 100) + "....."
+                  : event.description}
+              </p>
               <p className="text-gray-600">Date: {event.dateTime}</p>
               <p className="text-gray-600">Location: {event.location}</p>
               <div className="card-actions justify-end">
@@ -58,14 +44,6 @@ const EventList = ({ events }) => {
         ))}
       </div>
     </div>
-  );
-};
-
-const Footer = () => {
-  return (
-    <footer className="py-8 px-8 bg-blue-500 text-white text-center">
-      &copy; 2024 oleh Tim Devdynamos @devscale.id
-    </footer>
   );
 };
 
@@ -82,9 +60,7 @@ const EventsPage = () => {
 
   return (
     <div>
-      <Navbar />
       <EventList events={events} />
-      <Footer />
     </div>
   );
 };
