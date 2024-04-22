@@ -25,7 +25,7 @@ export const Register = () => {
       const jsonRes = await res.json();
       setMessage(jsonRes.message);
       formRef.current.reset();
-      router.push("/dashboard");
+      router.push("/events");
     }
 
     if (res.status === 405 || res.status === 500) {
