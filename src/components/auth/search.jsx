@@ -17,7 +17,6 @@ const SearchByTitle = ({ onSearch }) => {
   return (
     <div className="flex justify-center items-center mt-20">
       {" "}
-      {/* Menambahkan jarak di atas */}
       <form
         onSubmit={handleSubmit}
         className="flex items-center border border-gray-300 rounded-lg px-4 py-2 shadow-md"
@@ -28,7 +27,7 @@ const SearchByTitle = ({ onSearch }) => {
           value={searchTerm}
           onChange={handleSearchInputChange}
           className="border-none focus:outline-none px-2 py-1 flex-grow rounded-l-md"
-          style={{ minWidth: "300px", height: "40px" }} // Menyesuaikan lebar dan tinggi
+          style={{ minWidth: "300px", height: "40px" }}
         />
         <button
           type="submit"
