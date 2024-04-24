@@ -1,5 +1,12 @@
-import Image from "next/image";
-
-export default function Home() {
-  return <div>Ini adalah stagginnggg yaaaaaaa</div>;
+import EventsPage from "@/components/auth/events";
+import Navbar from "@/components/auth/navbar";
+import Footer from "@/components/auth/footer";
+export default function Page() {
+  return (
+    <div>
+      <Navbar />
+      <EventsPage />
+      <Footer />
+    </div>
+  );
 }
