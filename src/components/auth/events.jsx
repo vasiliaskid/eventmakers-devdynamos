@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import SearchByTitle from "@/components/auth/search";
+
 async function fetchEvents() {
   const res = await fetch("https://eventmakers.devscale.id/events/");
   const data = await res.json();
@@ -49,18 +51,28 @@ const EventList = ({ events }) => {
 
 const EventsPage = () => {
   const [events, setEvents] = React.useState([]);
+  const [filteredEvents, setFilteredEvents] = React.useState([]);
 
   React.useEffect(() => {
     async function fetchEventsData() {
       const eventsData = await fetchEvents();
       setEvents(eventsData);
+      setFilteredEvents(eventsData);
     }
     fetchEventsData();
   }, []);
 
+  const handleSearch = (searchTerm) => {
+    const filtered = events.filter((event) =>
+      event.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredEvents(filtered);
+  };
+
   return (
     <div>
-      <EventList events={events} />
+      <SearchByTitle onSearch={handleSearch} />
+      <EventList events={filteredEvents} />
     </div>
   );
 };
